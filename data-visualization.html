@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Visualization &#8212; Covid-19 Dashboard</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Export" href="data-export.html" />
+    <link rel="prev" title="Predictive Modeling" href="predictive-modeling.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/corona.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Covid-19 Dashboard</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Projektdokumentation
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Data Exploration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-sources.html">
+   Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business-understanding.html">
+   Business Understanding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-exploration.html">
+   Data Exploration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-preparation.html">
+   Data Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="predictive-modeling.html">
+   Predictive Modeling
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Data Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-export.html">
+   Data Export
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/data-visualization.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hz016/data-storytelling"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Quell-Repository"><i
+                    class="fab fa-github"></i>Repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/hz016/data-storytelling/issues/new?title=Issue%20on%20page%20%2Fdata-visualization.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Öffnen Sie ein Problem"><i class="fas fa-lightbulb"></i>offenes Thema</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global">
+   Global
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-1-1-monatlich-infizierte-pro-land-im-zeitlichen-verlauf-2020-2021-2022">
+     Abbildung 1.1: Monatlich Infizierte pro Land im zeitlichen Verlauf(2020,2021,2022)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-1-2-monatlich-tote-pro-land-im-zeitlichen-verlauf-2020-2021-2022">
+     Abbildung 1.2: Monatlich Tote pro Land im zeitlichen Verlauf(2020,2021,2022)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deutschland">
+   Deutschland
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-2-1-infizierte-in-de-in-summe">
+     Abbildung 2.1: Infizierte in DE in Summe
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-2-2-tote-in-de-in-summe">
+     Abbildung 2.2: Tote in DE in Summe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bundesebene">
+   Bundesebene
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-3-1-freie-betten">
+     Abbildung 3.1: Freie Betten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-3-2-belegte-betten">
+     Abbildung 3.2: Belegte Betten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-3-3-anzahl-infizierte-in-landkreise-ohne-freie-intensivbetten">
+     Abbildung 3.3: Anzahl Infizierte in Landkreise ohne freie Intensivbetten
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-3-4-impfstatus">
+     Abbildung 3.4: Impfstatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-3-5-impfquote-erstimpfung">
+     Abbildung 3.5: Impfquote Erstimpfung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-3-6-impfquote-boosterimpfung">
+     Abbildung 3.6: Impfquote Boosterimpfung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abbildung-3-7-forecast">
+     Abbildung 3.7: Forecast
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="data-visualization">
+<h1>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="global">
+<h2>Global<a class="headerlink" href="#global" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="abbildung-1-1-monatlich-infizierte-pro-land-im-zeitlichen-verlauf-2020-2021-2022">
+<h3>Abbildung 1.1: Monatlich Infizierte pro Land im zeitlichen Verlauf(2020,2021,2022)<a class="headerlink" href="#abbildung-1-1-monatlich-infizierte-pro-land-im-zeitlichen-verlauf-2020-2021-2022" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Weltweit Infizierte" src="_images/world_infizierte.png" /></p>
+</div>
+<div class="section" id="abbildung-1-2-monatlich-tote-pro-land-im-zeitlichen-verlauf-2020-2021-2022">
+<h3>Abbildung 1.2: Monatlich Tote pro Land im zeitlichen Verlauf(2020,2021,2022)<a class="headerlink" href="#abbildung-1-2-monatlich-tote-pro-land-im-zeitlichen-verlauf-2020-2021-2022" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Weltweit Tote" src="_images/world_tote.png" /></p>
+</div>
+</div>
+<div class="section" id="deutschland">
+<h2>Deutschland<a class="headerlink" href="#deutschland" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="abbildung-2-1-infizierte-in-de-in-summe">
+<h3>Abbildung 2.1: Infizierte in DE in Summe<a class="headerlink" href="#abbildung-2-1-infizierte-in-de-in-summe" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Infizierte in Deutschland" src="_images/germany_infizierte.png" /></p>
+</div>
+<div class="section" id="abbildung-2-2-tote-in-de-in-summe">
+<h3>Abbildung 2.2: Tote in DE in Summe<a class="headerlink" href="#abbildung-2-2-tote-in-de-in-summe" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Tote in Deutschland" src="_images/germany_tote.png" /></p>
+</div>
+</div>
+<div class="section" id="bundesebene">
+<h2>Bundesebene<a class="headerlink" href="#bundesebene" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="abbildung-3-1-freie-betten">
+<h3>Abbildung 3.1: Freie Betten<a class="headerlink" href="#abbildung-3-1-freie-betten" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Freie Betten in DE" src="_images/freie_betten.png" /></p>
+</div>
+<div class="section" id="abbildung-3-2-belegte-betten">
+<h3>Abbildung 3.2: Belegte Betten<a class="headerlink" href="#abbildung-3-2-belegte-betten" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Belegte Betten in DE" src="_images/belegte_betten.png" /></p>
+</div>
+<div class="section" id="abbildung-3-3-anzahl-infizierte-in-landkreise-ohne-freie-intensivbetten">
+<h3>Abbildung 3.3: Anzahl Infizierte in Landkreise ohne freie Intensivbetten<a class="headerlink" href="#abbildung-3-3-anzahl-infizierte-in-landkreise-ohne-freie-intensivbetten" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Landkreise ohne freie Intensivbetten" src="_images/lk_ohne_betten.png" /></p>
+</div>
+<div class="section" id="abbildung-3-4-impfstatus">
+<h3>Abbildung 3.4: Impfstatus<a class="headerlink" href="#abbildung-3-4-impfstatus" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Impfstatus" src="_images/impfstatus.png" /></p>
+</div>
+<div class="section" id="abbildung-3-5-impfquote-erstimpfung">
+<h3>Abbildung 3.5: Impfquote Erstimpfung<a class="headerlink" href="#abbildung-3-5-impfquote-erstimpfung" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Impfquote Erstimpfung" src="_images/impfquote_single.png" /></p>
+</div>
+<div class="section" id="abbildung-3-6-impfquote-boosterimpfung">
+<h3>Abbildung 3.6: Impfquote Boosterimpfung<a class="headerlink" href="#abbildung-3-6-impfquote-boosterimpfung" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Impfquote Booster" src="_images/impfquote_booster.png" /></p>
+</div>
+<div class="section" id="abbildung-3-7-forecast">
+<h3>Abbildung 3.7: Forecast<a class="headerlink" href="#abbildung-3-7-forecast" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Forecast" src="_images/forecast.png" /></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="predictive-modeling.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Predictive Modeling</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="data-export.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Data Export</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          Durch Hanna Ziegler<br/>
+        
+            &copy; Urheberrechte © 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

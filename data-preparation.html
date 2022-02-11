@@ -1,0 +1,1727 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Preparation &#8212; Covid-19 Dashboard</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Data Exploration" href="data-exploration.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/corona.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Covid-19 Dashboard</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Projektdokumentation
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Data Exploration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-sources.html">
+   Data Sources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business-understanding.html">
+   Business Understanding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-exploration.html">
+   Data Exploration
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Data Preparation
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/data-preparation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hz016/data-storytelling"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Quell-Repository"><i
+                    class="fab fa-github"></i>Repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/hz016/data-storytelling/issues/new?title=Issue%20on%20page%20%2Fdata-preparation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Öffnen Sie ein Problem"><i class="fas fa-lightbulb"></i>offenes Thema</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hz016/data-storytelling/master?urlpath=tree/docs/data-preparation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Data Preparation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#our-world-in-data">
+     Our World in Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#divi">
+     DIVI
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rki">
+     RKI
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#anreicherung-der-daten-mit-5-stelligen-landkreis-ids">
+       Anreicherung der Daten mit 5-stelligen Landkreis Ids
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prophet">
+     Prophet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predictive-modeling">
+   Predictive Modeling
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">geojson</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">from</span> <span class="nn">prophet</span> <span class="kn">import</span> <span class="n">Prophet</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="data-preparation">
+<h1>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="our-world-in-data">
+<h2>Our World in Data<a class="headerlink" href="#our-world-in-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort dataframe by date</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert date to pd datetime object</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extracting day month year from date</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;month_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">g7</span><span class="o">/</span><span class="n">m5kf9xs14511y51_chx__fs80000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_92913</span><span class="o">/</span><span class="mf">2927673444.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Sort dataframe by date</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Convert date to pd datetime object</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Since there is no data available before, we will shorten the dataframe </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">date</span> <span class="o">&gt;</span> <span class="s2">&quot;2020-01-22&quot;</span><span class="p">]</span>
+
+<span class="c1"># Aggregate the data on a monthly basis for each country </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;iso_code&#39;</span><span class="p">,</span><span class="s1">&#39;month_year&#39;</span><span class="p">,</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;location&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Sort dataframe by month</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;month_year&quot;</span><span class="p">)</span>
+
+<span class="c1"># To extract only data regarding Germany</span>
+<span class="n">germany</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">location</span> <span class="o">==</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="divi">
+<h2>DIVI<a class="headerlink" href="#divi" title="Permalink to this headline">¶</a></h2>
+<p>Anreicherung der DIVI Daten um die Infos der Landkreise sowie hinzufügen des Bundeslandes als Name.
+Die Daten werden aus einer Geojson Datei gewonnen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_file</span> <span class="o">=</span> <span class="s1">&#39;landkreise.geojson&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">land_geojson</span><span class="o">=</span> <span class="n">geojson</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">land_geojson</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ADE&#39;: 4,
+ &#39;GF&#39;: 4,
+ &#39;BSG&#39;: 1,
+ &#39;RS&#39;: &#39;01001&#39;,
+ &#39;AGS&#39;: &#39;01001&#39;,
+ &#39;SDV_RS&#39;: &#39;010010000000&#39;,
+ &#39;GEN&#39;: &#39;Flensburg&#39;,
+ &#39;BEZ&#39;: &#39;Kreisfreie Stadt&#39;,
+ &#39;IBZ&#39;: 40,
+ &#39;BEM&#39;: &#39;--&#39;,
+ &#39;NBD&#39;: &#39;ja&#39;,
+ &#39;SN_L&#39;: &#39;01&#39;,
+ &#39;SN_R&#39;: &#39;0&#39;,
+ &#39;SN_K&#39;: &#39;01&#39;,
+ &#39;SN_V1&#39;: &#39;00&#39;,
+ &#39;SN_V2&#39;: &#39;00&#39;,
+ &#39;SN_G&#39;: &#39;000&#39;,
+ &#39;FK_S3&#39;: &#39;R&#39;,
+ &#39;NUTS&#39;: &#39;DEF01&#39;,
+ &#39;RS_0&#39;: &#39;010010000000&#39;,
+ &#39;AGS_0&#39;: &#39;01001000&#39;,
+ &#39;WSK&#39;: &#39;2008/01/01&#39;,
+ &#39;DEBKG_ID&#39;: &#39;DEBKGDL20000002R&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>AGS steht für den Gemeindeschlüssel im DIVI Datensatz. Desweiteren enthält die Geojson noch den Name des Landkreises.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alle Landkreise werden in einer Liste abgespeichert</span>
+<span class="n">codes</span> <span class="o">=</span> <span class="n">divi</span><span class="p">[</span><span class="s1">&#39;gemeindeschluessel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">codes</span> <span class="o">=</span> <span class="n">codes</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">dict_codes</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Da die Daten in der DIVI Datei teilweise 4- bzw. 5 stellig vorliegen, sollen diese 5stellig standardisiert werden. Bsp. 1001 wird zu 01001</span>
+<span class="c1"># Die alten Codes aus der DIVI Datei werden mit den standardisierten in einem Dictionary abgespeichert </span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">codes</span><span class="p">)):</span>
+   
+    <span class="n">code</span> <span class="o">=</span> <span class="n">codes</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
+        <span class="n">dict_codes</span><span class="p">[</span><span class="n">code</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dict_codes</span><span class="p">[</span><span class="n">code</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+<span class="n">dict_codes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1001: &#39;01001&#39;,
+ 1002: &#39;01002&#39;,
+ 1003: &#39;01003&#39;,
+ 1004: &#39;01004&#39;,
+ 1051: &#39;01051&#39;,
+ 1053: &#39;01053&#39;,
+ 1054: &#39;01054&#39;,
+ 1055: &#39;01055&#39;,
+ 1056: &#39;01056&#39;,
+ 1057: &#39;01057&#39;,
+ 1058: &#39;01058&#39;,
+ 1059: &#39;01059&#39;,
+ 1060: &#39;01060&#39;,
+ 1061: &#39;01061&#39;,
+ 1062: &#39;01062&#39;,
+ 2000: &#39;02000&#39;,
+ 3101: &#39;03101&#39;,
+ 3102: &#39;03102&#39;,
+ 3103: &#39;03103&#39;,
+ 3151: &#39;03151&#39;,
+ 3153: &#39;03153&#39;,
+ 3154: &#39;03154&#39;,
+ 3155: &#39;03155&#39;,
+ 3157: &#39;03157&#39;,
+ 3158: &#39;03158&#39;,
+ 3159: &#39;03159&#39;,
+ 3241: &#39;03241&#39;,
+ 3251: &#39;03251&#39;,
+ 3252: &#39;03252&#39;,
+ 3254: &#39;03254&#39;,
+ 3255: &#39;03255&#39;,
+ 3256: &#39;03256&#39;,
+ 3257: &#39;03257&#39;,
+ 3351: &#39;03351&#39;,
+ 3352: &#39;03352&#39;,
+ 3353: &#39;03353&#39;,
+ 3354: &#39;03354&#39;,
+ 3355: &#39;03355&#39;,
+ 3356: &#39;03356&#39;,
+ 3357: &#39;03357&#39;,
+ 3358: &#39;03358&#39;,
+ 3359: &#39;03359&#39;,
+ 3360: &#39;03360&#39;,
+ 3361: &#39;03361&#39;,
+ 3401: &#39;03401&#39;,
+ 3402: &#39;03402&#39;,
+ 3403: &#39;03403&#39;,
+ 3404: &#39;03404&#39;,
+ 3405: &#39;03405&#39;,
+ 3451: &#39;03451&#39;,
+ 3452: &#39;03452&#39;,
+ 3453: &#39;03453&#39;,
+ 3454: &#39;03454&#39;,
+ 3455: &#39;03455&#39;,
+ 3456: &#39;03456&#39;,
+ 3457: &#39;03457&#39;,
+ 3458: &#39;03458&#39;,
+ 3459: &#39;03459&#39;,
+ 3460: &#39;03460&#39;,
+ 3461: &#39;03461&#39;,
+ 3462: &#39;03462&#39;,
+ 4011: &#39;04011&#39;,
+ 4012: &#39;04012&#39;,
+ 5111: &#39;05111&#39;,
+ 5112: &#39;05112&#39;,
+ 5113: &#39;05113&#39;,
+ 5114: &#39;05114&#39;,
+ 5116: &#39;05116&#39;,
+ 5117: &#39;05117&#39;,
+ 5119: &#39;05119&#39;,
+ 5120: &#39;05120&#39;,
+ 5122: &#39;05122&#39;,
+ 5124: &#39;05124&#39;,
+ 5154: &#39;05154&#39;,
+ 5158: &#39;05158&#39;,
+ 5162: &#39;05162&#39;,
+ 5166: &#39;05166&#39;,
+ 5170: &#39;05170&#39;,
+ 5314: &#39;05314&#39;,
+ 5315: &#39;05315&#39;,
+ 5316: &#39;05316&#39;,
+ 5334: &#39;05334&#39;,
+ 5358: &#39;05358&#39;,
+ 5362: &#39;05362&#39;,
+ 5366: &#39;05366&#39;,
+ 5370: &#39;05370&#39;,
+ 5374: &#39;05374&#39;,
+ 5378: &#39;05378&#39;,
+ 5382: &#39;05382&#39;,
+ 5512: &#39;05512&#39;,
+ 5513: &#39;05513&#39;,
+ 5515: &#39;05515&#39;,
+ 5554: &#39;05554&#39;,
+ 5558: &#39;05558&#39;,
+ 5562: &#39;05562&#39;,
+ 5566: &#39;05566&#39;,
+ 5570: &#39;05570&#39;,
+ 5711: &#39;05711&#39;,
+ 5754: &#39;05754&#39;,
+ 5758: &#39;05758&#39;,
+ 5762: &#39;05762&#39;,
+ 5766: &#39;05766&#39;,
+ 5770: &#39;05770&#39;,
+ 5774: &#39;05774&#39;,
+ 5911: &#39;05911&#39;,
+ 5913: &#39;05913&#39;,
+ 5914: &#39;05914&#39;,
+ 5915: &#39;05915&#39;,
+ 5916: &#39;05916&#39;,
+ 5954: &#39;05954&#39;,
+ 5958: &#39;05958&#39;,
+ 5962: &#39;05962&#39;,
+ 5966: &#39;05966&#39;,
+ 5970: &#39;05970&#39;,
+ 5974: &#39;05974&#39;,
+ 5978: &#39;05978&#39;,
+ 6411: &#39;06411&#39;,
+ 6412: &#39;06412&#39;,
+ 6413: &#39;06413&#39;,
+ 6414: &#39;06414&#39;,
+ 6431: &#39;06431&#39;,
+ 6432: &#39;06432&#39;,
+ 6433: &#39;06433&#39;,
+ 6434: &#39;06434&#39;,
+ 6435: &#39;06435&#39;,
+ 6436: &#39;06436&#39;,
+ 6437: &#39;06437&#39;,
+ 6438: &#39;06438&#39;,
+ 6439: &#39;06439&#39;,
+ 6440: &#39;06440&#39;,
+ 6531: &#39;06531&#39;,
+ 6532: &#39;06532&#39;,
+ 6533: &#39;06533&#39;,
+ 6534: &#39;06534&#39;,
+ 6535: &#39;06535&#39;,
+ 6611: &#39;06611&#39;,
+ 6631: &#39;06631&#39;,
+ 6632: &#39;06632&#39;,
+ 6633: &#39;06633&#39;,
+ 6634: &#39;06634&#39;,
+ 6635: &#39;06635&#39;,
+ 6636: &#39;06636&#39;,
+ 7111: &#39;07111&#39;,
+ 7131: &#39;07131&#39;,
+ 7132: &#39;07132&#39;,
+ 7133: &#39;07133&#39;,
+ 7134: &#39;07134&#39;,
+ 7135: &#39;07135&#39;,
+ 7137: &#39;07137&#39;,
+ 7138: &#39;07138&#39;,
+ 7140: &#39;07140&#39;,
+ 7141: &#39;07141&#39;,
+ 7143: &#39;07143&#39;,
+ 7211: &#39;07211&#39;,
+ 7231: &#39;07231&#39;,
+ 7232: &#39;07232&#39;,
+ 7233: &#39;07233&#39;,
+ 7235: &#39;07235&#39;,
+ 7311: &#39;07311&#39;,
+ 7312: &#39;07312&#39;,
+ 7313: &#39;07313&#39;,
+ 7314: &#39;07314&#39;,
+ 7315: &#39;07315&#39;,
+ 7316: &#39;07316&#39;,
+ 7317: &#39;07317&#39;,
+ 7318: &#39;07318&#39;,
+ 7319: &#39;07319&#39;,
+ 7320: &#39;07320&#39;,
+ 7331: &#39;07331&#39;,
+ 7332: &#39;07332&#39;,
+ 7333: &#39;07333&#39;,
+ 7334: &#39;07334&#39;,
+ 7335: &#39;07335&#39;,
+ 7336: &#39;07336&#39;,
+ 7337: &#39;07337&#39;,
+ 7339: &#39;07339&#39;,
+ 7340: &#39;07340&#39;,
+ 8111: &#39;08111&#39;,
+ 8115: &#39;08115&#39;,
+ 8116: &#39;08116&#39;,
+ 8117: &#39;08117&#39;,
+ 8118: &#39;08118&#39;,
+ 8119: &#39;08119&#39;,
+ 8121: &#39;08121&#39;,
+ 8125: &#39;08125&#39;,
+ 8126: &#39;08126&#39;,
+ 8127: &#39;08127&#39;,
+ 8128: &#39;08128&#39;,
+ 8135: &#39;08135&#39;,
+ 8136: &#39;08136&#39;,
+ 8211: &#39;08211&#39;,
+ 8212: &#39;08212&#39;,
+ 8215: &#39;08215&#39;,
+ 8216: &#39;08216&#39;,
+ 8221: &#39;08221&#39;,
+ 8222: &#39;08222&#39;,
+ 8225: &#39;08225&#39;,
+ 8226: &#39;08226&#39;,
+ 8231: &#39;08231&#39;,
+ 8235: &#39;08235&#39;,
+ 8236: &#39;08236&#39;,
+ 8237: &#39;08237&#39;,
+ 8311: &#39;08311&#39;,
+ 8315: &#39;08315&#39;,
+ 8316: &#39;08316&#39;,
+ 8317: &#39;08317&#39;,
+ 8325: &#39;08325&#39;,
+ 8326: &#39;08326&#39;,
+ 8327: &#39;08327&#39;,
+ 8335: &#39;08335&#39;,
+ 8336: &#39;08336&#39;,
+ 8337: &#39;08337&#39;,
+ 8415: &#39;08415&#39;,
+ 8416: &#39;08416&#39;,
+ 8417: &#39;08417&#39;,
+ 8421: &#39;08421&#39;,
+ 8425: &#39;08425&#39;,
+ 8426: &#39;08426&#39;,
+ 8435: &#39;08435&#39;,
+ 8436: &#39;08436&#39;,
+ 8437: &#39;08437&#39;,
+ 9161: &#39;09161&#39;,
+ 9162: &#39;09162&#39;,
+ 9163: &#39;09163&#39;,
+ 9171: &#39;09171&#39;,
+ 9172: &#39;09172&#39;,
+ 9173: &#39;09173&#39;,
+ 9174: &#39;09174&#39;,
+ 9176: &#39;09176&#39;,
+ 9177: &#39;09177&#39;,
+ 9178: &#39;09178&#39;,
+ 9179: &#39;09179&#39;,
+ 9180: &#39;09180&#39;,
+ 9181: &#39;09181&#39;,
+ 9182: &#39;09182&#39;,
+ 9183: &#39;09183&#39;,
+ 9184: &#39;09184&#39;,
+ 9185: &#39;09185&#39;,
+ 9186: &#39;09186&#39;,
+ 9187: &#39;09187&#39;,
+ 9188: &#39;09188&#39;,
+ 9189: &#39;09189&#39;,
+ 9190: &#39;09190&#39;,
+ 9261: &#39;09261&#39;,
+ 9262: &#39;09262&#39;,
+ 9263: &#39;09263&#39;,
+ 9271: &#39;09271&#39;,
+ 9272: &#39;09272&#39;,
+ 9273: &#39;09273&#39;,
+ 9274: &#39;09274&#39;,
+ 9275: &#39;09275&#39;,
+ 9276: &#39;09276&#39;,
+ 9277: &#39;09277&#39;,
+ 9278: &#39;09278&#39;,
+ 9279: &#39;09279&#39;,
+ 9361: &#39;09361&#39;,
+ 9362: &#39;09362&#39;,
+ 9363: &#39;09363&#39;,
+ 9371: &#39;09371&#39;,
+ 9372: &#39;09372&#39;,
+ 9373: &#39;09373&#39;,
+ 9375: &#39;09375&#39;,
+ 9376: &#39;09376&#39;,
+ 9461: &#39;09461&#39;,
+ 9462: &#39;09462&#39;,
+ 9463: &#39;09463&#39;,
+ 9464: &#39;09464&#39;,
+ 9471: &#39;09471&#39;,
+ 9472: &#39;09472&#39;,
+ 9474: &#39;09474&#39;,
+ 9475: &#39;09475&#39;,
+ 9476: &#39;09476&#39;,
+ 9477: &#39;09477&#39;,
+ 9478: &#39;09478&#39;,
+ 9479: &#39;09479&#39;,
+ 9561: &#39;09561&#39;,
+ 9562: &#39;09562&#39;,
+ 9563: &#39;09563&#39;,
+ 9564: &#39;09564&#39;,
+ 9571: &#39;09571&#39;,
+ 9572: &#39;09572&#39;,
+ 9574: &#39;09574&#39;,
+ 9575: &#39;09575&#39;,
+ 9576: &#39;09576&#39;,
+ 9577: &#39;09577&#39;,
+ 9661: &#39;09661&#39;,
+ 9662: &#39;09662&#39;,
+ 9663: &#39;09663&#39;,
+ 9671: &#39;09671&#39;,
+ 9672: &#39;09672&#39;,
+ 9673: &#39;09673&#39;,
+ 9674: &#39;09674&#39;,
+ 9675: &#39;09675&#39;,
+ 9676: &#39;09676&#39;,
+ 9677: &#39;09677&#39;,
+ 9678: &#39;09678&#39;,
+ 9679: &#39;09679&#39;,
+ 9761: &#39;09761&#39;,
+ 9762: &#39;09762&#39;,
+ 9763: &#39;09763&#39;,
+ 9764: &#39;09764&#39;,
+ 9771: &#39;09771&#39;,
+ 9772: &#39;09772&#39;,
+ 9773: &#39;09773&#39;,
+ 9774: &#39;09774&#39;,
+ 9775: &#39;09775&#39;,
+ 9776: &#39;09776&#39;,
+ 9777: &#39;09777&#39;,
+ 9778: &#39;09778&#39;,
+ 9779: &#39;09779&#39;,
+ 9780: &#39;09780&#39;,
+ 10041: &#39;10041&#39;,
+ 10042: &#39;10042&#39;,
+ 10043: &#39;10043&#39;,
+ 10044: &#39;10044&#39;,
+ 10045: &#39;10045&#39;,
+ 10046: &#39;10046&#39;,
+ 11000: &#39;11000&#39;,
+ 12051: &#39;12051&#39;,
+ 12052: &#39;12052&#39;,
+ 12053: &#39;12053&#39;,
+ 12054: &#39;12054&#39;,
+ 12060: &#39;12060&#39;,
+ 12061: &#39;12061&#39;,
+ 12062: &#39;12062&#39;,
+ 12063: &#39;12063&#39;,
+ 12064: &#39;12064&#39;,
+ 12065: &#39;12065&#39;,
+ 12066: &#39;12066&#39;,
+ 12067: &#39;12067&#39;,
+ 12068: &#39;12068&#39;,
+ 12069: &#39;12069&#39;,
+ 12070: &#39;12070&#39;,
+ 12071: &#39;12071&#39;,
+ 12072: &#39;12072&#39;,
+ 12073: &#39;12073&#39;,
+ 13003: &#39;13003&#39;,
+ 13004: &#39;13004&#39;,
+ 13071: &#39;13071&#39;,
+ 13072: &#39;13072&#39;,
+ 13073: &#39;13073&#39;,
+ 13074: &#39;13074&#39;,
+ 13075: &#39;13075&#39;,
+ 13076: &#39;13076&#39;,
+ 14511: &#39;14511&#39;,
+ 14521: &#39;14521&#39;,
+ 14522: &#39;14522&#39;,
+ 14523: &#39;14523&#39;,
+ 14524: &#39;14524&#39;,
+ 14612: &#39;14612&#39;,
+ 14625: &#39;14625&#39;,
+ 14626: &#39;14626&#39;,
+ 14627: &#39;14627&#39;,
+ 14628: &#39;14628&#39;,
+ 14713: &#39;14713&#39;,
+ 14729: &#39;14729&#39;,
+ 14730: &#39;14730&#39;,
+ 15001: &#39;15001&#39;,
+ 15002: &#39;15002&#39;,
+ 15003: &#39;15003&#39;,
+ 15081: &#39;15081&#39;,
+ 15082: &#39;15082&#39;,
+ 15083: &#39;15083&#39;,
+ 15084: &#39;15084&#39;,
+ 15085: &#39;15085&#39;,
+ 15086: &#39;15086&#39;,
+ 15087: &#39;15087&#39;,
+ 15088: &#39;15088&#39;,
+ 15089: &#39;15089&#39;,
+ 15090: &#39;15090&#39;,
+ 15091: &#39;15091&#39;,
+ 16051: &#39;16051&#39;,
+ 16052: &#39;16052&#39;,
+ 16053: &#39;16053&#39;,
+ 16054: &#39;16054&#39;,
+ 16055: &#39;16055&#39;,
+ 16056: &#39;16056&#39;,
+ 16061: &#39;16061&#39;,
+ 16062: &#39;16062&#39;,
+ 16063: &#39;16063&#39;,
+ 16064: &#39;16064&#39;,
+ 16065: &#39;16065&#39;,
+ 16066: &#39;16066&#39;,
+ 16067: &#39;16067&#39;,
+ 16068: &#39;16068&#39;,
+ 16069: &#39;16069&#39;,
+ 16070: &#39;16070&#39;,
+ 16071: &#39;16071&#39;,
+ 16072: &#39;16072&#39;,
+ 16073: &#39;16073&#39;,
+ 16074: &#39;16074&#39;,
+ 16075: &#39;16075&#39;,
+ 16076: &#39;16076&#39;,
+ 16077: &#39;16077&#39;,
+ 9175: &#39;09175&#39;,
+ 9565: &#39;09565&#39;,
+ 9377: &#39;09377&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Der neue Standardisierte Gemeindeschlüssel wird aus dem Dictionary über den bisherigen identifiziert und als neue Spalte dem Datensatz angehängt. </span>
+<span class="n">divi</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">divi</span><span class="p">[</span><span class="s2">&quot;gemeindeschluessel&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">dict_codes</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+<span class="c1"># Die Bundesländer werden ebenfalls in einem Dictionary mit dem jeweiligen Bundesländercode versehen</span>
+<span class="n">bundesland</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Schleswig-Holstein&quot;</span><span class="p">,</span><span class="s2">&quot;Hamburg&quot;</span><span class="p">,</span><span class="s2">&quot;Niedersachsen&quot;</span><span class="p">,</span><span class="s2">&quot;Bremen&quot;</span><span class="p">,</span><span class="s2">&quot;Nordrhein-Westfalen&quot;</span><span class="p">,</span><span class="s2">&quot;Hessen&quot;</span><span class="p">,</span><span class="s2">&quot;Rheinland-Pfalz&quot;</span><span class="p">,</span><span class="s2">&quot;Baden-Württemberg&quot;</span><span class="p">,</span><span class="s2">&quot;Bayern&quot;</span><span class="p">,</span><span class="s2">&quot;Saarland&quot;</span><span class="p">,</span><span class="s2">&quot;Berlin&quot;</span><span class="p">,</span><span class="s2">&quot;Brandenburg&quot;</span><span class="p">,</span><span class="s2">&quot;Mecklenburg-Vorpommern&quot;</span><span class="p">,</span><span class="s2">&quot;Sachsen&quot;</span><span class="p">,</span><span class="s2">&quot;Sachsen-Anhalt&quot;</span><span class="p">,</span><span class="s2">&quot;Thüringen&quot;</span><span class="p">]</span>
+<span class="n">code</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">bund_code</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">bundesland</span><span class="p">))</span>
+
+<span class="c1"># Der Name des Bundeslandes wird über den Code im Dictionary identifiziert</span>
+<span class="n">divi</span><span class="p">[</span><span class="s2">&quot;bundesland_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">divi</span><span class="p">[</span><span class="s2">&quot;bundesland&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">bund_code</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+<span class="c1"># Die Landkreise werden mit dem Gemeindeschlüssel in einem Dictionary gespeichert</span>
+<span class="n">dict_landkreise</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">land_geojson</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]:</span>
+    <span class="n">dict_landkreise</span><span class="p">[</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;AGS&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;GEN&quot;</span><span class="p">]</span>
+
+<span class="c1"># Der Landkreisname wird über die jeweilige standardisierte ID identifiziert und dem Datensatz hinzugefügt</span>
+<span class="n">divi</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">divi</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">dict_landkreise</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datensatz wird auf die benötigten Spalten reduziert</span>
+<span class="n">divi</span> <span class="o">=</span> <span class="n">divi</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;bundesland_name&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;faelle_covid_aktuell&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;faelle_covid_aktuell_invasiv_beatmet&#39;</span><span class="p">,</span> <span class="s1">&#39;betten_frei&#39;</span><span class="p">,</span> <span class="s1">&#39;betten_belegt&#39;</span><span class="p">]]</span>
+<span class="n">divi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>bundesland_name</th>
+      <th>name</th>
+      <th>faelle_covid_aktuell</th>
+      <th>faelle_covid_aktuell_invasiv_beatmet</th>
+      <th>betten_frei</th>
+      <th>betten_belegt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-04-24</td>
+      <td>01001</td>
+      <td>Schleswig-Holstein</td>
+      <td>Flensburg</td>
+      <td>1</td>
+      <td>1</td>
+      <td>40</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-04-24</td>
+      <td>01002</td>
+      <td>Schleswig-Holstein</td>
+      <td>Kiel</td>
+      <td>4</td>
+      <td>3</td>
+      <td>93</td>
+      <td>108</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-04-24</td>
+      <td>01003</td>
+      <td>Schleswig-Holstein</td>
+      <td>Lübeck</td>
+      <td>4</td>
+      <td>4</td>
+      <td>109</td>
+      <td>108</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-04-24</td>
+      <td>01004</td>
+      <td>Schleswig-Holstein</td>
+      <td>Neumünster</td>
+      <td>1</td>
+      <td>1</td>
+      <td>17</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-04-24</td>
+      <td>01051</td>
+      <td>Schleswig-Holstein</td>
+      <td>Dithmarschen</td>
+      <td>3</td>
+      <td>1</td>
+      <td>47</td>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="rki">
+<h2>RKI<a class="headerlink" href="#rki" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataset wird gefiltert</span>
+<span class="n">rki</span> <span class="o">=</span> <span class="n">rki</span><span class="p">[</span><span class="n">rki</span><span class="o">.</span><span class="n">LandkreisId_Impfort</span> <span class="o">!=</span> <span class="s2">&quot;u&quot;</span><span class="p">]</span>
+
+<span class="c1"># Landkreis Ids werden als integer markiert</span>
+<span class="n">rki</span><span class="o">.</span><span class="n">LandkreisId_Impfort</span> <span class="o">=</span> <span class="n">rki</span><span class="o">.</span><span class="n">LandkreisId_Impfort</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="anreicherung-der-daten-mit-5-stelligen-landkreis-ids">
+<h3>Anreicherung der Daten mit 5-stelligen Landkreis Ids<a class="headerlink" href="#anreicherung-der-daten-mit-5-stelligen-landkreis-ids" title="Permalink to this headline">¶</a></h3>
+<p>Die Landkreis Ids ohne Duplikate in einer List gespeichert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lk</span> <span class="o">=</span> <span class="n">rki</span><span class="o">.</span><span class="n">LandkreisId_Impfort</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">lk</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1003, 1053, 1055, 1056, 1057]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Da die Landkreise nicht alle 5-stellig vorliegen, wird ein dictionary mit dem 4-stelligen und dem 5-stelligen Wert gebildet. Den 4-stelligen Zahlen wird an der ersten Stelle eine 0 hinzugefügt.</p>
+<p>So entsteht bspw. das Key-Value Paar:
+1003:01003</p>
+<p>Ist die Zahl bereits fünfstellig, so wird der Wert der Liste gespiegelt.
+12002:12002</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_ids</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lk</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
+        <span class="n">dict_ids</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dict_ids</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">dict_ids</span><span class="p">[</span><span class="mi">1003</span><span class="p">],</span> <span class="n">dict_ids</span><span class="p">[</span><span class="mi">10042</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;01003&#39;, &#39;10042&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die neue Id wird über die Column LandkreisId_Impfort, deren Wert als Key im Dictionary vorliegt, als neue Spalte im Datensatz angelegt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rki</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rki</span><span class="p">[</span><span class="s2">&quot;LandkreisId_Impfort&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">dict_ids</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="c1"># Die alte Id wird aus dem Datensatz gelöscht</span>
+<span class="n">rki</span> <span class="o">=</span> <span class="n">rki</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;LandkreisId_Impfort&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Da keine Id mit 17000 in der Realität existiert, wird diese aus dem Datensatz entfernt</span>
+<span class="n">rki</span> <span class="o">=</span> <span class="n">rki</span><span class="p">[</span><span class="n">rki</span><span class="o">.</span><span class="n">Id</span> <span class="o">!=</span> <span class="s1">&#39;17000&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Da nun die vollständigen Ids der Landkreise vorliegen, können die Daten nun mit Informationen aus der geojson angereichert werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rki</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rki</span><span class="p">[</span><span class="s2">&quot;Id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">dict_landkreise</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">rki</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rki</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Impfdatum</th>
+      <th>Altersgruppe</th>
+      <th>Impfschutz</th>
+      <th>Anzahl</th>
+      <th>Id</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>1</td>
+      <td>9</td>
+      <td>01003</td>
+      <td>Lübeck</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-12-27</td>
+      <td>60+</td>
+      <td>1</td>
+      <td>19</td>
+      <td>01003</td>
+      <td>Lübeck</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>1</td>
+      <td>13</td>
+      <td>01053</td>
+      <td>Herzogtum Lauenburg</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-12-27</td>
+      <td>60+</td>
+      <td>1</td>
+      <td>200</td>
+      <td>01053</td>
+      <td>Herzogtum Lauenburg</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>1</td>
+      <td>20</td>
+      <td>01055</td>
+      <td>Ostholstein</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">divi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>bundesland_name</th>
+      <th>name</th>
+      <th>faelle_covid_aktuell</th>
+      <th>faelle_covid_aktuell_invasiv_beatmet</th>
+      <th>betten_frei</th>
+      <th>betten_belegt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-04-24</td>
+      <td>01001</td>
+      <td>Schleswig-Holstein</td>
+      <td>Flensburg</td>
+      <td>1</td>
+      <td>1</td>
+      <td>40</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-04-24</td>
+      <td>01002</td>
+      <td>Schleswig-Holstein</td>
+      <td>Kiel</td>
+      <td>4</td>
+      <td>3</td>
+      <td>93</td>
+      <td>108</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-04-24</td>
+      <td>01003</td>
+      <td>Schleswig-Holstein</td>
+      <td>Lübeck</td>
+      <td>4</td>
+      <td>4</td>
+      <td>109</td>
+      <td>108</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-04-24</td>
+      <td>01004</td>
+      <td>Schleswig-Holstein</td>
+      <td>Neumünster</td>
+      <td>1</td>
+      <td>1</td>
+      <td>17</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-04-24</td>
+      <td>01051</td>
+      <td>Schleswig-Holstein</td>
+      <td>Dithmarschen</td>
+      <td>3</td>
+      <td>1</td>
+      <td>47</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>249533</th>
+      <td>2022-01-12</td>
+      <td>16073</td>
+      <td>Thüringen</td>
+      <td>Saalfeld-Rudolstadt</td>
+      <td>6</td>
+      <td>3</td>
+      <td>6</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>249534</th>
+      <td>2022-01-12</td>
+      <td>16074</td>
+      <td>Thüringen</td>
+      <td>Saale-Holzland-Kreis</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>249535</th>
+      <td>2022-01-12</td>
+      <td>16075</td>
+      <td>Thüringen</td>
+      <td>Saale-Orla-Kreis</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>249536</th>
+      <td>2022-01-12</td>
+      <td>16076</td>
+      <td>Thüringen</td>
+      <td>Greiz</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>249537</th>
+      <td>2022-01-12</td>
+      <td>16077</td>
+      <td>Thüringen</td>
+      <td>Altenburger Land</td>
+      <td>4</td>
+      <td>1</td>
+      <td>8</td>
+      <td>24</td>
+    </tr>
+  </tbody>
+</table>
+<p>249538 rows × 8 columns</p>
+</div></div></div>
+</div>
+<p>Die RKI Daten werden mit den DIVI Daten gemerged und darum ergänzt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">rki</span><span class="p">,</span><span class="n">divi</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;bundesland_name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(),</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Id&quot;</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="n">rki</span> <span class="o">=</span> <span class="n">rki</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rki</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Impfdatum</th>
+      <th>Altersgruppe</th>
+      <th>Impfschutz</th>
+      <th>Anzahl</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>bundesland_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>1</td>
+      <td>9</td>
+      <td>01003</td>
+      <td>Lübeck</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-12-27</td>
+      <td>60+</td>
+      <td>1</td>
+      <td>19</td>
+      <td>01003</td>
+      <td>Lübeck</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>1</td>
+      <td>13</td>
+      <td>01053</td>
+      <td>Herzogtum Lauenburg</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-12-27</td>
+      <td>60+</td>
+      <td>1</td>
+      <td>200</td>
+      <td>01053</td>
+      <td>Herzogtum Lauenburg</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>1</td>
+      <td>20</td>
+      <td>01055</td>
+      <td>Ostholstein</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Der Impfschutz ist als Integer hinterlegt und wird nun mit einem Wert versehen, der selbstsprechend ist</span>
+<span class="n">rki</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rki</span><span class="o">.</span><span class="n">Impfschutz</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Impfschutz&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Erstimpfung&quot;</span>
+<span class="n">rki</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rki</span><span class="o">.</span><span class="n">Impfschutz</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Impfschutz&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Zweitimpfung&quot;</span>
+<span class="n">rki</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rki</span><span class="o">.</span><span class="n">Impfschutz</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;Impfschutz&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Boosterimpfung&quot;</span>
+
+<span class="c1">#Die Spalten werden umbenannt</span>
+<span class="n">rki</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Datum&#39;</span><span class="p">,</span><span class="s1">&#39;Altersgruppe&#39;</span><span class="p">,</span><span class="s1">&#39;Impfschutz&#39;</span><span class="p">,</span><span class="s1">&#39;Anzahl&#39;</span><span class="p">,</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span><span class="s1">&#39;Landkreis&#39;</span><span class="p">,</span><span class="s1">&#39;Bundesland&#39;</span><span class="p">]</span>
+<span class="n">rki</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Datum</th>
+      <th>Altergruppe</th>
+      <th>Impfschutz</th>
+      <th>Anzahl</th>
+      <th>Id</th>
+      <th>Landkreis</th>
+      <th>Bundesland</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>Erstimpfung</td>
+      <td>9</td>
+      <td>01003</td>
+      <td>Lübeck</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-12-27</td>
+      <td>60+</td>
+      <td>Erstimpfung</td>
+      <td>19</td>
+      <td>01003</td>
+      <td>Lübeck</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>Erstimpfung</td>
+      <td>13</td>
+      <td>01053</td>
+      <td>Herzogtum Lauenburg</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-12-27</td>
+      <td>60+</td>
+      <td>Erstimpfung</td>
+      <td>200</td>
+      <td>01053</td>
+      <td>Herzogtum Lauenburg</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-12-27</td>
+      <td>18-59</td>
+      <td>Erstimpfung</td>
+      <td>20</td>
+      <td>01055</td>
+      <td>Ostholstein</td>
+      <td>Schleswig-Holstein</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="prophet">
+<h2>Prophet<a class="headerlink" href="#prophet" title="Permalink to this headline">¶</a></h2>
+<p>Für den Forecast muss das DIVI Dataset nochmal angepasst werden. Prophet benötigt für den Forecast zwei Spalten: das Datum und den y-Wert, der vorhergesagt werden soll. Diese beiden Spalten müssen im Datensatz als ds und y hinterlegt sein.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases_prophet</span><span class="o">=</span> <span class="n">divi</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;faelle_covid_aktuell&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">cases_prophet</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases_prophet</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ds</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-04-24</td>
+      <td>2650</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-04-25</td>
+      <td>2543</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-04-26</td>
+      <td>2529</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-04-27</td>
+      <td>2471</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-04-28</td>
+      <td>2394</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="predictive-modeling">
+<h1>Predictive Modeling<a class="headerlink" href="#predictive-modeling" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Prophet</span><span class="p">(</span><span class="n">interval_width</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span><span class="n">changepoint_prior_scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">seasonality_mode</span><span class="o">=</span><span class="s1">&#39;multiplicative&#39;</span><span class="p">,</span><span class="n">daily_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">weekly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">yearly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">changepoint_range</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cases_prophet</span><span class="p">)</span>
+<span class="c1"># Die nächsten 90 Tage werden vorhergesagt</span>
+<span class="n">future</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">make_future_dataframe</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">forecast</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+<span class="c1"># Der ursprüngliche y-Wert wird dem Datensatz hinzugefügt.</span>
+<span class="n">forecast</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cases_prophet</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+
+<span class="c1"># Der Forecast wird in einem separaten Datensatz abgespeichert. Es werden nur Zeilen betrachtet, die in der Zukunft liegen und daher keinen y-Wert haben.</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">[</span><span class="n">forecast</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+<span class="n">pred</span><span class="p">[[</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;yhat&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial log joint probability = -33.3148
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+      99       1556.16     0.0099208       1200.94      0.8675      0.8675      123   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     167       1620.45   0.000351183       1027.31    5.41e-07       0.001      251  LS failed, Hessian reset 
+     199       1625.17    0.00159692        404.82      0.3575           1      292   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     299       1651.03     0.0010482        398.06       0.853       0.853      416   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     399       1668.87    0.00406088       1234.43           1           1      552   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     453       1673.12   0.000269026       1091.94   7.392e-07       0.001      662  LS failed, Hessian reset 
+     499       1673.88   0.000102685       314.784           1           1      723   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     599       1677.58    0.00154684       378.374      0.3145           1      852   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     699       1685.21    0.00120487       565.874       5.251      0.7873      994   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     799       1688.07   8.02775e-05       324.016           1           1     1133   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     899       1690.58    0.00038631       462.462      0.6316      0.6316     1269   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+     999       1691.86   4.03513e-06        313.95      0.6055      0.6055     1408   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+    1099       1692.16   8.37942e-06       380.566      0.5499      0.5499     1547   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+    1111       1692.17   1.17661e-05       350.728   3.086e-08       0.001     1604  LS failed, Hessian reset 
+    1199       1692.27   5.00052e-06       294.729           1           1     1735   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+    1299        1693.8    0.00220517       330.646           1           1     1867   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+    1388       1694.44   1.53938e-05        313.51   4.051e-08       0.001     2038  LS failed, Hessian reset 
+    1399       1694.45   4.08026e-06       256.575           1           1     2050   
+    Iter      log prob        ||dx||      ||grad||       alpha      alpha0  # evals  Notes 
+    1414       1694.45   7.67968e-07       302.269   2.012e-09       0.001     2107  LS failed, Hessian reset 
+    1424       1694.45   1.24606e-08        257.96      0.2712      0.2712     2120   
+Optimization terminated normally: 
+  Convergence detected: relative gradient magnitude is below tolerance
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y</th>
+      <th>yhat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>0.0</td>
+      <td>90.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>NaN</td>
+      <td>1259.816367</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>895.866484</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>NaN</td>
+      <td>230.600608</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>NaN</td>
+      <td>534.982713</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>NaN</td>
+      <td>898.791357</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>NaN</td>
+      <td>1901.822932</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>NaN</td>
+      <td>3294.127617</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Sollte der Forecast negative Fallzahlen vorhersagen, dann werden diese mit einer 0 versehen.
+Die Spalte ‘yhat’ sind die vorhergesagten Fallzahlen. yhat_lower und yhat_upper stellen das Konfidenzintervall dar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="s1">&#39;yhat&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;yhat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="s1">&#39;yhat_lower&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;yhat_lower&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="s1">&#39;yhat_upper&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;yhat_upper&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="data-exploration.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Data Exploration</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          Durch Hanna Ziegler<br/>
+        
+            &copy; Urheberrechte © 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,44 @@
+Traceback (most recent call last):
+  File "/Users/hannaziegler/opt/anaconda3/envs/jbook/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/Users/hannaziegler/opt/anaconda3/envs/jbook/lib/python3.7/site-packages/nbclient/client.py", line 1117, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/hannaziegler/opt/anaconda3/envs/jbook/lib/python3.7/site-packages/nbclient/util.py", line 78, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/hannaziegler/opt/anaconda3/envs/jbook/lib/python3.7/site-packages/nbclient/util.py", line 57, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/hannaziegler/opt/anaconda3/envs/jbook/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+  File "/Users/hannaziegler/opt/anaconda3/envs/jbook/lib/python3.7/site-packages/nbclient/client.py", line 559, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/Users/hannaziegler/opt/anaconda3/envs/jbook/lib/python3.7/site-packages/nbclient/client.py", line 862, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/hannaziegler/opt/anaconda3/envs/jbook/lib/python3.7/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+m = Prophet(interval_width=0.95,changepoint_prior_scale=0.01,seasonality_mode='multiplicative',daily_seasonality=False,weekly_seasonality=True,yearly_seasonality=True,changepoint_range=0.6)
+m.fit(cases_prophet)
+# Die nächsten 90 Tage werden vorhergesagt
+future = m.make_future_dataframe(periods=360)
+forecast = m.predict(future)
+# Der ursprüngliche y-Wert wird dem Datensatz hinzugefügt.
+forecast['y'] = cases_prophet['y']
+
+# Der Forecast wird in einem separaten Datensatz abgespeichert. Es werden nur Zeilen betrachtet, die in der Zukunft liegen und daher keinen y-Wert haben.
+pred = forecast[forecast.y.isna()]
+pred[['ds','y','yhat']].describe()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m/var/folders/g7/m5kf9xs14511y51_chx__fs80000gn/T/ipykernel_5556/1175067638.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mm[0m [0;34m=[0m [0mProphet[0m[0;34m([0m[0minterval_width[0m[0;34m=[0m[0;36m0.95[0m[0;34m,[0m[0mchangepoint_prior_scale[0m[0;34m=[0m[0;36m0.01[0m[0;34m,[0m[0mseasonality_mode[0m[0;34m=[0m[0;34m'multiplicative'[0m[0;34m,[0m[0mdaily_seasonality[0m[0;34m=[0m[0;32mFalse[0m[0;34m,[0m[0mweekly_seasonality[0m[0;34m=[0m[0;32mTrue[0m[0;34m,[0m[0myearly_seasonality[0m[0;34m=[0m[0;32mTrue[0m[0;34m,[0m[0mchangepoint_range[0m[0;34m=[0m[0;36m0.6[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mm[0m[0;34m.[0m[0mfit[0m[0;34m([0m[0mcases_prophet[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;31m# Die nächsten 90 Tage werden vorhergesagt[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mfuture[0m [0;34m=[0m [0mm[0m[0;34m.[0m[0mmake_future_dataframe[0m[0;34m([0m[0mperiods[0m[0;34m=[0m[0;36m360[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mforecast[0m [0;34m=[0m [0mm[0m[0;34m.[0m[0mpredict[0m[0;34m([0m[0mfuture[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'Prophet' is not defined
+NameError: name 'Prophet' is not defined
+
