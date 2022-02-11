@@ -32,7 +32,7 @@ pred[['ds','y','yhat']].describe()
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/var/folders/g7/m5kf9xs14511y51_chx__fs80000gn/T/ipykernel_5556/1175067638.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/g7/m5kf9xs14511y51_chx__fs80000gn/T/ipykernel_34428/1175067638.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mm[0m [0;34m=[0m [0mProphet[0m[0;34m([0m[0minterval_width[0m[0;34m=[0m[0;36m0.95[0m[0;34m,[0m[0mchangepoint_prior_scale[0m[0;34m=[0m[0;36m0.01[0m[0;34m,[0m[0mseasonality_mode[0m[0;34m=[0m[0;34m'multiplicative'[0m[0;34m,[0m[0mdaily_seasonality[0m[0;34m=[0m[0;32mFalse[0m[0;34m,[0m[0mweekly_seasonality[0m[0;34m=[0m[0;32mTrue[0m[0;34m,[0m[0myearly_seasonality[0m[0;34m=[0m[0;32mTrue[0m[0;34m,[0m[0mchangepoint_range[0m[0;34m=[0m[0;36m0.6[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      2[0m [0mm[0m[0;34m.[0m[0mfit[0m[0;34m([0m[0mcases_prophet[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      3[0m [0;31m# Die nächsten 90 Tage werden vorhergesagt[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
