@@ -95,11 +95,6 @@
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Data Exploration
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="data-sources.html">
    Data Sources
   </a>
@@ -310,8 +305,14 @@
                 
   <div class="section" id="data-visualization">
 <h1>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h1>
+<p>Die Detailtiefe soll im Laufe der Benutzung des Dashboards ansteigen.
+Daher wird global in das Dashboard eingestiegen, dann auf Deutschlandebene heruntergegangen und zu guter letzt auf Bundeslandebene.
+Der Nutzer hat dabei viele Möglichkeiten das Dashboard durch die Auswahl seiner Präferenzen zu beeinflussen.</p>
 <div class="section" id="global">
 <h2>Global<a class="headerlink" href="#global" title="Permalink to this headline">¶</a></h2>
+<p>Anhand der Weltkarten soll der Nutzer einen Eindruck erhalten, wie sich die Pandemie im Laufe der Zeit entwickelt hat. Die unterschiedliche Farbintensität weißt auf die Fallzahlen bzw. Todeszahlen im jeweiligen Land hin.
+Hierzu kann der Nutzer selbst den jeweiligen Monat in der Zeitleiste auswählen und per Tab auch das jeweilige Jahr.
+Zusätzlich kann er auswählen, ob er die Sicht auf die Infiziertenzahlen oder die Todeszahlen haben möchte.</p>
 <div class="section" id="abbildung-1-1-monatlich-infizierte-pro-land-im-zeitlichen-verlauf-2020-2021-2022">
 <h3>Abbildung 1.1: Monatlich Infizierte pro Land im zeitlichen Verlauf(2020,2021,2022)<a class="headerlink" href="#abbildung-1-1-monatlich-infizierte-pro-land-im-zeitlichen-verlauf-2020-2021-2022" title="Permalink to this headline">¶</a></h3>
 <p><img alt="Weltweit Infizierte" src="_images/world_infizierte.png" /></p>
@@ -323,6 +324,7 @@
 </div>
 <div class="section" id="deutschland">
 <h2>Deutschland<a class="headerlink" href="#deutschland" title="Permalink to this headline">¶</a></h2>
+<p>Auf deutscher Ebene soll gezeigt werden, wie viele Personen in Summe an Corona infiziert sind und wie viele an Corona gestorben sind.</p>
 <div class="section" id="abbildung-2-1-infizierte-in-de-in-summe">
 <h3>Abbildung 2.1: Infizierte in DE in Summe<a class="headerlink" href="#abbildung-2-1-infizierte-in-de-in-summe" title="Permalink to this headline">¶</a></h3>
 <p><img alt="Infizierte in Deutschland" src="_images/germany_infizierte.png" /></p>
@@ -334,6 +336,11 @@
 </div>
 <div class="section" id="bundesebene">
 <h2>Bundesebene<a class="headerlink" href="#bundesebene" title="Permalink to this headline">¶</a></h2>
+<p>Auf Bundesebene hat der Nutzer die Möglichkeit Kennzahlen zu verschiedenen “Themenbereichen” sich anzuschauen.
+Über Tabs kann dieser navigieren.
+Desweiteren kann er sich die Bundesländer auswählen, die er betrachten möchte.</p>
+<p>Unter dem Tab Bettenbelegung soll der User einen Eindruck über die aktuelle Situation der Intensivbettenbelegung erhalten.
+Hierfür bekommt der User zunächst zwei Single-KPI’s angezeigt, die den aktuellen Stand abbilden.</p>
 <div class="section" id="abbildung-3-1-freie-betten">
 <h3>Abbildung 3.1: Freie Betten<a class="headerlink" href="#abbildung-3-1-freie-betten" title="Permalink to this headline">¶</a></h3>
 <p><img alt="Freie Betten in DE" src="_images/freie_betten.png" /></p>
@@ -344,15 +351,21 @@
 </div>
 <div class="section" id="abbildung-3-3-anzahl-infizierte-in-landkreise-ohne-freie-intensivbetten">
 <h3>Abbildung 3.3: Anzahl Infizierte in Landkreise ohne freie Intensivbetten<a class="headerlink" href="#abbildung-3-3-anzahl-infizierte-in-landkreise-ohne-freie-intensivbetten" title="Permalink to this headline">¶</a></h3>
-<p><img alt="Landkreise ohne freie Intensivbetten" src="_images/lk_ohne_betten.png" /></p>
+<p>Die Abbildung soll verdeutlichen, wie viele Infizierte aktuell kein freies Intensivbett zur Verfügung haben. Diese Grafik ist sogar auf Landkreisebene, gruppiert aber unter dem jeweiligen Bundesland. Dadurch erhält der Nutzer einen besseren Eindruck, ob sein Landkreis hiervon betroffen ist.
+Hierfür wird ein Balkendiagramm gewählt. Die jeweiligen Landkreise eines Bundeslandes kommen nacheinander, Landkreise aus dem gleichen Bundesland erhalten jeweils dieselbe Farbe.
+<img alt="Landkreise ohne freie Intensivbetten" src="_images/lk_ohne_betten.png" /></p>
 </div>
 <div class="section" id="abbildung-3-4-impfstatus">
 <h3>Abbildung 3.4: Impfstatus<a class="headerlink" href="#abbildung-3-4-impfstatus" title="Permalink to this headline">¶</a></h3>
-<p><img alt="Impfstatus" src="_images/impfstatus.png" /></p>
+<p>Unter dem Tab Impfstatus soll der Nutzer einen Eindruck über die aktuelle Situation der Impfungen bekommen.
+Hier wird angezeigt wie viele Impfdosen in welchen Ländern bereits verabreicht wurden. Der Impfstatus wird als ein gestapeltes Balkendiagramm dargestellt. Dadurch sieht man, welche Bundesländer die meisten Impfdosen in Summe verabreicht haben. Zudem lassen sich die einzelnen Stati in den Bundesländern besser vergleichen.
+<img alt="Impfstatus" src="_images/impfstatus.png" /></p>
 </div>
 <div class="section" id="abbildung-3-5-impfquote-erstimpfung">
 <h3>Abbildung 3.5: Impfquote Erstimpfung<a class="headerlink" href="#abbildung-3-5-impfquote-erstimpfung" title="Permalink to this headline">¶</a></h3>
-<p><img alt="Impfquote Erstimpfung" src="_images/impfquote_single.png" /></p>
+<p>Um sicherzustellen, dass die Bundesländer untereinander besser verglichen werden können, erfährt der User auch die Impfquoten der Erst- und Boosterimpfung im jeweiligen Bundesland.
+Die Impfquoten werden mithilfe eines Balkendiagramms dargestellt.
+<img alt="Impfquote Erstimpfung" src="_images/impfquote_single.png" /></p>
 </div>
 <div class="section" id="abbildung-3-6-impfquote-boosterimpfung">
 <h3>Abbildung 3.6: Impfquote Boosterimpfung<a class="headerlink" href="#abbildung-3-6-impfquote-boosterimpfung" title="Permalink to this headline">¶</a></h3>
@@ -360,7 +373,8 @@
 </div>
 <div class="section" id="abbildung-3-7-forecast">
 <h3>Abbildung 3.7: Forecast<a class="headerlink" href="#abbildung-3-7-forecast" title="Permalink to this headline">¶</a></h3>
-<p><img alt="Forecast" src="_images/forecast.png" /></p>
+<p>Der Forecast dient dazu, zu verdeutlichen, wie sich die Pandemie entwickeln wird, wenn sich nichts verändert. Dadurch erhält der Nutzer einen Eindruck davon, was in den nächsten Monaten auf ihn zukommt, sollten die Impfungen nicht nach oben gehen. Die Zeitreihe wird als Liniendiagramm dargestellt mit hellgrünem Konfidenzintervall.
+<img alt="Forecast" src="_images/forecast.png" /></p>
 </div>
 </div>
 </div>
